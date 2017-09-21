@@ -5,6 +5,20 @@ Azure Container Instance (ACI) allow to run containers directly on Azure, withou
 
 Note: until the date of this documentation (September 21 - 2017) the ACI feature is on Preview. Check the link above about more updates.
 
+## Why use Azure Container Instances (ACI) as a node in Azure Container Services (ACS) Kubernetes?
+
+Use the serverless features of Azure Container Instances **(ACI)** can help your application use extra power to support high unpredictable loads with no need to add more raw power (masters and agents) to your Azure Container Services Cluster **(ACS)**.
+
+Using this strategy can help you to support different architectures and usage scenarios:
+- Push temporarily a container to ACI to support a higher number of application requests;
+- Run Containers in a job pre defined schedule routine;
+- Run containers that use batch process and run in a certain schedule frequency;
+- Run containers as functions that will be triggered by any other container or service;
+
+When you install the ACI connector in your ACS Kubernetes cluster you will see a new node in your Kubernetes Cluster that you can push new containers there.
+
+![kubectl get node](./img/25.PNG)
+
 ## Architecture
 
 This deployment use ACI Connector to scale Pods, Deployments and Jobs to Azure Container Instance service. After the installation of the ACI Connector (using an YAML file) you will see the ACI Connector as an additional node.
