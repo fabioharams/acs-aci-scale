@@ -60,3 +60,34 @@ spec:
       nodeName: aci-connector
 ```
 
+## Scale Deployments
+
+You can scale deployments, replicaset or replicationcontroller using HPA (Horizontal Pod Autoscaler) feature on Kubernetes. This command works with deployments (using ACI Connector or not) and you can do through **KUBECTL** command.
+
+```kubectl
+kubectl autoscale deployment nginx-deployment --min=1 --max=20 --cpu-percent=30
+```
+
+This example show how to scale the deployment **nginx-deployment** with a minimum of 1 Pod and maximum of 20 Pods. Also this will set a target of 30% of CPU utilization.
+
+To check all the autoscale rules just type the following command:
+
+```kubectl
+kubectl get hpa
+```
+
+![hpa](./img/5.PNG)
+
+You can change the rule just using the same name for the deployment.
+
+* Note: if you delete your deployment remember that the autoscale rule remains. You can create another deployment with the same name and the autoscale will continue working.
+
+
+
+## Issues
+
+ACI Connector is a public preview and probably some os these issues will be fixed later. However we listed just for your information:  
+
+* Using this deployment under ACI Connector allows Kubernetes to scale Pods normally. However the parameter --cpu-percent will not have effect (during our tests we had setup the --cpu-percent to low values and the website continued responding very fast)  
+
+* Some management tools for Kubernetes like [Kube-Ops-View](https://github.com/hjacobs/kube-ops-view) and [OMS](https://blogs.technet.microsoft.com/msoms/2017/04/03/monitor-kubernetes-containers-with-oms-insight-analytics-container-monitoring-solution/) doesn`t work properly. 
