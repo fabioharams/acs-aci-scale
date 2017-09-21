@@ -34,3 +34,29 @@ https://github.com/fabioharams/kubernetes
 
 https://github.com/Azure/aci-connector-k8s
 
+
+## Deploy to ACI Connector
+
+You can use following example bellow to deploy NGINX as a Deployment (code is available at **script** folder on this repository)
+
+```yaml
+apiVersion: apps/v1beta1 # for versions before 1.6.0 use extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
+      dnsPolicy: ClusterFirst
+      nodeName: aci-connector
+```
+
