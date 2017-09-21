@@ -19,6 +19,10 @@ Using YAML to deploy on Kubernetes just add the parameter **nodeName** (use the 
 
 ![yaml](./img/3.PNG) 
 
+Diagram about the structure
+
+![diagram](./img/4.PNG)
+
 
 ## Requirements
 
